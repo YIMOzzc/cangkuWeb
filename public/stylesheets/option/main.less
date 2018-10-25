@@ -89,8 +89,10 @@
 .cznr{
     width: 100%;
     min-height: 100px;
+    max-height:450px;
+    overflow-y: auto;
     margin-top:25px;
-    padding:40px 15px;
+    padding:50px 15px;
     border:1px solid #eee;
     &>div{
         display: none;
@@ -128,5 +130,51 @@
     }
     input{
         color:#777;
+    }
+}
+
+//人员操作的样式部分
+.gdus,.gdin,.gdout,.gds,.gdd{
+    position: relative;
+
+    table{
+        border-collapse: separate;
+        border-spacing: 0 10px;
+        input{
+            width: 100%;
+            text-align: center;
+        }
+    }
+    .ABS{
+        position: absolute;
+        right:20px;
+        top:-30px;
+    }
+    
+}
+
+//操作部分公共样式
+table{
+    .bosscz{
+        span{
+            width: 45px;
+            display: inline-block;
+            transition: 0.2s;
+            user-select: none;
+            background-color: rgba(204, 204, 204, 0);
+            &:hover{
+                cursor: pointer;
+                transform: scale(1.2);
+                background-color: rgba(204, 204, 204, 0.2);
+                font-weight: 600;
+            }
+        }
+        .spChange{
+            margin-right:1px;
+        }
+        .spDelete{
+            margin-left:1px;
+        }
+       
     }
 }

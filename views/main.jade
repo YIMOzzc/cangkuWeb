@@ -15,7 +15,7 @@ block content
                 li.goodsIn.li-now 入库
                 li.goodsOut 出库
                 li.goodsSearch 查询进出货单
-                li.goodsDelete 删除货单
+                li.goodsDelete 货单管理
                 li.czuser 人员管理
             .cznr
                 .gdin.cznr_block
@@ -29,7 +29,7 @@ block content
                                 td
                                     label(for="gdName") 货物名称
                                 td
-                                    label(for="gdMany") 货物数量
+                                    label(for="gdMany") 入库数量
                                 td
                                     label(for="gdInFrom") 供货商
                             tr
@@ -44,10 +44,23 @@ block content
                                 td
                                    input#gdInFrom(type="text")
                         sibmit.surein 确定入库
-                .gdout bbb
-                    
+                .gdout 
+                     table.text-center(style="width:100%;")
+                        .outScAbs.ABS
+                            input.osaInput(type="text")
+                            button.osaBtn 搜索
+                        tr
+                            td.hidden-xs.hidden-sm 货物编号
+                            td.hidden-xs.hidden-sm 货物类型
+                            td 货物名称
+                            td 货物数量
+                            td.hidden-xs.hidden-sm 供 货 商
+                            td 出库数量
                 .gds
                     table.text-center(style="width:100%;")
+                        .seaScAbs.ABS
+                            input.ssaInput(type="text")
+                            button.ssaBtn 搜索
                         tr
                             td.hidden-xs.hidden-sm 货物编号
                             td.hidden-xs.hidden-sm 货物类型
@@ -58,18 +71,34 @@ block content
                             td 入库人员
                             td.hidden-xs.hidden-sm 出库时间
                             td 出库人员
-                .gdd   ccc
-                    
-                .gdus  uuu
-                    table.text-center(style="width:100%;")
+                .gdd  
+                     table.text-center(style="width:100%;")
+                        .delScAbs.ABS
+                            input.osaInput(type="text")
+                            button.osaBtn 搜索
                         tr
-                            td.hidden-xs.hidden-sm 员工姓名
-                            td.hidden-xs.hidden-sm 员工电话
-                            td 员工邮箱
-                            td 员工qq号
-                            td.hidden-xs.hidden-sm 登陆密码
-                            td.hidden-xs.hidden-sm 最后登录时间
-                            
+                            td.hidden-xs.hidden-sm 货物编号
+                            td.hidden-xs.hidden-sm 货物类型
+                            td 货物名称
+                            td 货物数量
+                            td.hidden-xs.hidden-sm 供 货 商
+                            td 入库人员
+                            td 出库人员
+                            td 操作
+                .gdus  
+                    table.text-center(style="width:100%;")
+                        .useScAbs.ABS
+                            input.useInput(type="text")
+                            button.useBtn 搜索
+                        tr
+                            td 员工姓名
+                            td 员工电话
+                            td.hidden-xs.hidden-sm 员工邮箱
+                            td.hidden-xs.hidden-sm 员工qq号
+                            td 登陆密码
+                            td.hidden-xs.hidden-sm 注册时间
+                            td 员工等级
+                            td 操作
 
 block script
     script(src="/javascripts/index.js")

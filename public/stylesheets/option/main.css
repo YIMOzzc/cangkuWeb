@@ -80,8 +80,10 @@
 .cznr {
   width: 100%;
   min-height: 100px;
+  max-height: 450px;
+  overflow-y: auto;
   margin-top: 25px;
-  padding: 40px 15px;
+  padding: 50px 15px;
   border: 1px solid #eee;
 }
 .cznr > div {
@@ -118,4 +120,55 @@
 }
 .cznr input {
   color: #777;
+}
+.gdus,
+.gdin,
+.gdout,
+.gds,
+.gdd {
+  position: relative;
+}
+.gdus table,
+.gdin table,
+.gdout table,
+.gds table,
+.gdd table {
+  border-collapse: separate;
+  border-spacing: 0 10px;
+}
+.gdus table input,
+.gdin table input,
+.gdout table input,
+.gds table input,
+.gdd table input {
+  width: 100%;
+  text-align: center;
+}
+.gdus .ABS,
+.gdin .ABS,
+.gdout .ABS,
+.gds .ABS,
+.gdd .ABS {
+  position: absolute;
+  right: 20px;
+  top: -30px;
+}
+table .bosscz span {
+  width: 45px;
+  display: inline-block;
+  transition: 0.2s;
+  user-select: none;
+  background-color: rgba(204, 204, 204, 0);
+}
+table .bosscz span:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+  background-color: rgba(204, 204, 204, 0.2);
+  font-weight: 600;
+}
+table .bosscz .spChange {
+  margin-right: 1px;
+}
+table .bosscz .spDelete {
+  margin-left: 1px;
 }

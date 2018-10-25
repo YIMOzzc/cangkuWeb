@@ -1,5 +1,6 @@
 /**注册新用户页面路由 */
 var express = require('express');
+var mongoose = require('mongoose');
 var router = express.Router();
 const MongoClient = require('mongodb').MongoClient;
 const DB_CONN_STR = 'mongodb://localhost:27017';
@@ -11,8 +12,8 @@ router.get('/', function(req, res, next) {
 
 //用户注册数据库查重
 router.post('/hasUser', function(req, res, next) {
-    var data = req.body;
-    MongoClient.connect(DB_CONN_STR, function(err, client) {
+    // var data = req.body;
+    MongoClient.connect(DB_CONN_STR, { useNewUrlParser: true }, function(err, client) {
         if (err) console.log(err);
         var db = client.db('user'); //选择数据库;
         var usermsg = db.collection('usermsg'); //选择集合;
@@ -25,9 +26,9 @@ router.post('/hasUser', function(req, res, next) {
 
 //返回注册结果
 router.post('/regaaa', function(req, res, next) {
-    var time = new Date().getTime();
+    var time = new Date().toLocaleString();
     var ip = (req.connection.remoteAddress || req.socket.remoteAddress).split(':');
-    MongoClient.connect(DB_CONN_STR, function(err, client) {
+    MongoClient.connect(DB_CONN_STR, { useNewUrlParser: true }, function(err, client) {
         if (err) console.log(err);
         var db = client.db('user'); //选择数据库;
         var usermsg = db.collection('usermsg'); //选择集合;
@@ -43,7 +44,7 @@ router.post('/regaaa', function(req, res, next) {
 
 //人员管理 信息表查询
 router.post('/rygl', function(req, res, next) {
-    MongoClient.connect(DB_CONN_STR, function(err, client) {
+    MongoClient.connect(DB_CONN_STR, { useNewUrlParser: true }, function(err, client) {
         if (err) console.log(err);
         var db = client.db('user'); //选择数据库;
         var usermsg = db.collection('usermsg'); //选择集合;
@@ -54,4 +55,32 @@ router.post('/rygl', function(req, res, next) {
     });
 });
 
+
+//人员管理 人员信息更改
+router.post('/rygl-change', function(req, res, next) {
+    MongoClient.connect(DB_CONN_STR, { useNewUrlParser: true }, function(err, client) {
+        if (err) console.log(err);
+        var db = client.db('user'); //选择数据库;
+        var usermsg = db.collection('usermsg'); //选择集合;
+
+        var objid = mongoose.Types.ObjectId(req.body.id);
+        usermsg.updateOne({ "_id": objid }, { $set: { "user_name": req.body[0], "user_phone": req.body[1], "user_email": req.body[2], "user_qq": req.body[3], "user_pwd": req.body[4], "user_rank": req.body[6] } });
+        // console.log(req.body.id);
+        res.send({ "msg": "ok" });
+
+    });
+});
+
+//人员管理 人员信息删除
+router.post('/rygl-delete', function(req, res, next) {
+    MongoClient.connect(DB_CONN_STR, { useNewUrlParser: true }, function(err, client) {
+        if (err) console.log(err);
+        var db = client.db('user'); //选择数据库;
+        var usermsg = db.collection('usermsg'); //选择集合;
+        var objid = mongoose.Types.ObjectId(req.body.id);
+        usermsg.remove({ "_id": objid });
+        // console.log(req.body.id);
+        res.send({ "msg": "已经成功执行删除操作！" });
+    });
+});
 module.exports = router;
