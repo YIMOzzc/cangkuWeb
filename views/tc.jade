@@ -1,0 +1,45 @@
+extends layout
+
+block heads
+    link(href="/images/icon/app.ico" rel="shortcut icon")
+
+block nav
+  .container
+    .h1.text-center 仓库管理系统
+    button.center-block(type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg") 登陆
+
+//- body
+block content
+  .modal.fade.bs-example-modal-lg(tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel")
+    .modal-dialog.modal-lg.modal-signin(role="document")
+      .modal-content
+        .container-fluid.signin
+          .row
+            .col-lg-6.col-lg-offset-3.col-xs-12
+            .h2.text-center 登录
+          .row
+            .col-lg-6.col-lg-offset-3.col-xs-12
+              .input-group
+                span.input-group-btn
+                  button.label-uname(class="btn btn-default" type="button" tabindex="-1" style="width:100px;") 管理员账号
+                input.form-control(type='text' name='username' id='username')
+          .row
+            .col-lg-6.col-lg-offset-3.col-xs-12
+              .input-group
+                span.input-group-btn
+                  button.label-pwd(class="btn btn-default" type="button" tabindex="-1"  style="width:100px;") 密码
+                input.form-control(type='password' name='password' id='password')
+          .row
+            .col-lg-6.col-lg-offset-3.col-xs-12
+              input.btn-signin.btn.btn-success.center-block#signindlbtn(type='button' value='登陆')
+          .row
+            .col-lg-6.col-lg-offset-3.col-xs-12
+              .alert.text-center 
+
+block scripts
+  script(src='javascripts/jquery.min.js')
+  script(src='/javascripts/bootstrap.min.js')
+  script(src="/javascripts/reLoadin.js")
+      
+block styles
+  link(rel='stylesheet' href='stylesheets/option/main.css')

@@ -1,0 +1,102 @@
+@charset "utf-8";
+html,
+body{
+width:100%;
+height:100%;
+
+}
+body{
+    background-image: url('../images/index/index-bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+@media screen and (max-width:330px){
+    .bodybox{
+        padding-top:20px!important;
+        .btn-deng{
+            display: none;
+        }
+    }
+}
+
+
+//登陆页面样式
+.bodybox{
+    width: 100%;
+    height: 100%;
+    transition: 0.4s;
+    position: relative;
+    padding-top:40px;
+    color:rgb(184, 241, 237);
+    .btn-deng{
+        margin-left: 30px;
+        color:rgb(245, 244, 248);
+        font-size:30px;
+        font-weight:600;
+        width: 100px;
+        line-height: 50px;
+        border-radius: 8px;
+        text-align: center;
+        transition: 0.4s;
+        user-select: none;
+        &:hover{
+            cursor: pointer;
+            background-color: rgba(145, 220, 243, 0.5);
+        }
+    }
+    .img-tm{
+        transition: 0.4s;
+    }
+    .inputs{
+        
+        input{
+            padding-left: 10px;
+            height: 40px;
+            margin-top:10px;
+            margin-bottom:10px;
+            border:0;
+            border-radius: 4px;
+            color:#666;
+            font-weight: 600;
+            &::placeholder{
+                color:#999;
+            }
+        }
+        label{
+            font-size: 25px;
+            &:hover{
+                cursor:pointer;
+            }
+        }
+       
+    }
+    .input-group-btn{
+        .btn{
+            width: 80px;
+            margin-left: 15px;
+            border-radius: 15px;
+            color:#fff;
+            transition: 0.4s;
+        }
+    }
+
+}
+
+.box-dark{
+    background-color:rgba(0,0,0,0.5);
+    color:#ccc;
+    // transition: 0.4s;
+    .btn-deng{
+        color:#ccc;
+
+    }
+    .img-tm{
+        opacity: 0.8;
+    }
+}
+
+.container{
+    padding:0 10%;
+}

@@ -1,0 +1,27 @@
+extends layout
+block heads
+  link(rel="shortcut icon", href="/images/icon/app.ico")
+block style
+  link(href="/stylesheets/index.css" rel="stylesheet")
+block content
+  .bodybox
+    .btn-deng 关灯 
+    .container
+      .h1.text-center(style="margin-top:10px;") 仓库管理系统
+      .row
+        .col-lg-6.col-md-6.col-sm-6.col-xs-12.text-center.h4.img-tm
+          img(src='images/weixin/weixin1.jpg')
+        .col-lg-6.col-md-6.col-sm-6.col-xs-12.h4.text-center
+          .inputs
+            label.hidden-xs(for='username') 帐&nbsp;&nbsp;&nbsp;号：
+            input#username(type='text' placeholder='请输入用户名')
+            br
+            label.hidden-xs(for='pwd') 密&nbsp;&nbsp;&nbsp;码：
+            input#pwd(type='password' placeholder='请输入密码')
+            .container-fluid
+              .input-group-btn.text-center
+                input.btn.btn-success.signin(type='button' value='登录')
+                input.btn.btn-info.register(type='button' value='注册')
+              
+block script
+  script(src="/javascripts/index.js")

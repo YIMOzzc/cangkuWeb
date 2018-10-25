@@ -1,0 +1,52 @@
+extends layout
+block heads
+    title 注册
+    link(rel="shortcut icon" href="/images/icon/add.ico")
+block styles
+    link(rel="stylesheet",href="/stylesheets/user.css")
+
+block content 
+    .container  
+        table.table
+            caption.h2.text-center 注册新用户
+                tr
+                    td.text-right
+                        label(for="username") 账号：
+                    td(style="width:55%;")
+                        input#username(type="text" placeholder="请输入用户名" data-type="user")
+                tr
+                    td.text-right
+                        label(for="password") 密码：
+                    td
+                        input#password(type="password" placeholder="请输入密码" data-type="pwd")
+                tr
+                    td.text-right
+                        label(for="dbpwd") 确认密码：
+                    td
+                        input#dbpwd(type="password" placeholder="请确认密码" data-type="dbpwd")
+                tr
+                    td.text-right
+                        label(for="phone") 手机号：
+                    td
+                        input#phone(type="text" placeholder="请输入手机号" data-type="phone")
+                tr
+                    td.text-right
+                        label(for="qq") QQ号：
+                    td
+                        input#qq(type="text" placeholder="请输qq号" data-type="qq")
+                tr
+                    td.text-right
+                        label(for="email") 邮箱：
+                    td
+                        input#email(type="email" placeholder="请输电子邮箱" data-type="email")
+                tr
+                    td.text-center(colspan="2",style="padding-left:15px;") 
+                        button.btn1 注册
+                    
+                     
+                    
+
+
+block script
+    script(src="/javascripts/checkform.js")
+    script(src="/javascripts/zhuce.js")

@@ -1,0 +1,121 @@
+@charset "utf-8";
+.bodybox {
+  width: 100%;
+  height: 100%;
+  transition: 0.4s;
+  position: relative;
+  padding-top: 40px;
+  color: #5b9e9b;
+}
+.bodybox .btn-deng {
+  position: absolute;
+  top: 3%;
+  left: 3%;
+  color: #646464;
+  font-size: 22px;
+  font-weight: 600;
+  width: 100px;
+  line-height: 50px;
+  border-radius: 8px;
+  text-align: center;
+  transition: 0.4s;
+  user-select: none;
+}
+.bodybox .btn-deng:hover {
+  cursor: pointer;
+  background-color: rgba(72, 152, 177, 0.5);
+  color: #444;
+}
+.box-dark {
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #eee;
+}
+.box-dark .btn-deng {
+  color: #ccc;
+}
+#tuichu {
+  text-decoration: none;
+  padding-left: 10px;
+  font-size: 12px;
+  color: #264d53;
+}
+.caozuo {
+  margin-top: 30px;
+  list-style: none;
+  font-size: 22px;
+  user-select: none;
+  display: flex;
+  justify-content: space-around;
+  padding: 0;
+}
+.caozuo .li-now {
+  background-color: rgba(82, 59, 59, 0.7);
+  color: #fff;
+}
+.caozuo li {
+  text-align: center;
+  flex: 1;
+  transition: 0.4s;
+  line-height: 35px;
+  border-radius: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.caozuo li:hover {
+  cursor: pointer;
+  background-color: rgba(82, 59, 59, 0.7);
+  color: #fff;
+}
+@media screen and (max-width: 500px) {
+  .caozuo li {
+    font-size: 14px;
+    line-height: 24px;
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+  .container .cznr label {
+    font-size: 14px;
+  }
+}
+.cznr {
+  width: 100%;
+  min-height: 100px;
+  margin-top: 25px;
+  padding: 40px 15px;
+  border: 1px solid #eee;
+}
+.cznr > div {
+  display: none;
+}
+.cznr .cznr_block {
+  display: block;
+}
+.cznr label {
+  font-size: 18px;
+}
+.cznr .form-gdin td {
+  width: 19%;
+}
+.cznr .form-gdin td input {
+  width: 100%;
+}
+.cznr .form-gdin .surein {
+  user-select: none;
+  display: block;
+  margin: 0 auto;
+  margin-top: 30px;
+  font-size: 24px;
+  line-height: 50px;
+  width: 200px;
+  border-radius: 5px;
+  transition: 0.4s;
+  background-color: #cecece;
+}
+.cznr .form-gdin .surein:hover {
+  color: #fff;
+  background-color: #397e83;
+  cursor: pointer;
+}
+.cznr input {
+  color: #777;
+}

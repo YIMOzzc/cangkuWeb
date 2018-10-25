@@ -1,0 +1,51 @@
+
+// @font-face{
+//     font-family: 'mini-xingkai';
+//     src : url('/font/mini-xingkai.ttf');
+// }
+// body{
+  
+// }
+table{
+    background-image: url('../images/loadin/bg1.jpg');
+    background-position: 10% 0;
+    background-repeat: no-repeat;
+    background-size: 20%;
+    .h2{
+        color:rgb(96, 164, 196);
+        margin-top:30px;
+    }
+}
+
+td{
+    border:0!important;
+    label{
+       color:#555;
+       font-size: 18px;
+       &:hover{
+           cursor: pointer;
+       }
+    }
+    input{
+        padding-left: 10px;
+        border-radius: 5px;
+        border:1px solid #ccc;
+    }
+}
+
+button[class*="btn"]{
+    border:0;
+    width: 60px;
+    height: 25px;
+   
+    background-color:rgba(0,0,0,0.4);
+    color:#eee;
+    transition: 0.3s;
+    border-radius: 5px;
+    &:hover{
+        color:#fff;
+        background-color: rgb(73, 164, 238);
+        transform: scale(1.3);
+        
+    }
+}

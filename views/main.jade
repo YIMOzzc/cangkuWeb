@@ -1,0 +1,76 @@
+extends layout
+
+block heads
+    link(href="/images/icon/app.ico" rel="shortcut icon")
+block styles
+    link(href="/stylesheets/option/main.css" rel="stylesheet")
+block content
+    .bodybox
+        .btn-deng 关灯
+        .container 
+            h1.text-center 仓库管理系统
+            .text-center 管理员：#{user}   
+                a#tuichu(href="http://localhost:3000/tc_dl")   退出
+            ul.caozuo
+                li.goodsIn.li-now 入库
+                li.goodsOut 出库
+                li.goodsSearch 查询进出货单
+                li.goodsDelete 删除货单
+                li.czuser 人员管理
+            .cznr
+                .gdin.cznr_block
+                    form.form-gdin.text-center
+                        table(style="margin:0 auto; width:100%;")
+                            tr
+                                td
+                                    label(for="gdNum") 货物编码
+                                td
+                                    label(for="gdType") 货物类型
+                                td
+                                    label(for="gdName") 货物名称
+                                td
+                                    label(for="gdMany") 货物数量
+                                td
+                                    label(for="gdInFrom") 供货商
+                            tr
+                                td
+                                    input#gdNum(type="text") 
+                                td   
+                                    input#gdType(type="text")
+                                td                                    
+                                    input#gdName(type="text")
+                                td                                  
+                                   input#gdMany(type="text")
+                                td
+                                   input#gdInFrom(type="text")
+                        sibmit.surein 确定入库
+                .gdout bbb
+                    
+                .gds
+                    table.text-center(style="width:100%;")
+                        tr
+                            td.hidden-xs.hidden-sm 货物编号
+                            td.hidden-xs.hidden-sm 货物类型
+                            td 货物名称
+                            td 货物数量
+                            td.hidden-xs.hidden-sm 供 货 商
+                            td.hidden-xs.hidden-sm 入库时间
+                            td 入库人员
+                            td.hidden-xs.hidden-sm 出库时间
+                            td 出库人员
+                .gdd   ccc
+                    
+                .gdus  uuu
+                    table.text-center(style="width:100%;")
+                        tr
+                            td.hidden-xs.hidden-sm 员工姓名
+                            td.hidden-xs.hidden-sm 员工电话
+                            td 员工邮箱
+                            td 员工qq号
+                            td.hidden-xs.hidden-sm 登陆密码
+                            td.hidden-xs.hidden-sm 最后登录时间
+                            
+
+block script
+    script(src="/javascripts/index.js")
+    script(src="/javascripts/main.js")
