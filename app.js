@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //使用express-session模块，暂存
 app.use(session({
     secret: 'keyboard cat',
-    cookie: ('name', 'value', { path: '/', httpOnly: true, secure: false, maxAge: 1000 * 60 * 10 }),
+    cookie: ('name', 'value', { path: '/', httpOnly: true, secure: false, maxAge: 1000 * 60 * 30 }),
     //重新保存：强制会话保存即使是未修改的。默认为true但是得写上
     resave: true,
     //强制“未初始化”的会话保存到存储。 

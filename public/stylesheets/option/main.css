@@ -80,7 +80,7 @@
 .cznr {
   width: 100%;
   min-height: 100px;
-  max-height: 450px;
+  max-height: 750px;
   overflow-y: auto;
   margin-top: 25px;
   padding: 50px 15px;
@@ -153,6 +153,24 @@
   right: 20px;
   top: -30px;
 }
+.gdus .ABS input,
+.gdin .ABS input,
+.gdout .ABS input,
+.gds .ABS input,
+.gdd .ABS input {
+  border-radius: 5px;
+}
+.gdus .ABS button,
+.gdin .ABS button,
+.gdout .ABS button,
+.gds .ABS button,
+.gdd .ABS button {
+  background-color: rgba(204, 204, 204, 0.301);
+  border: 0;
+  line-height: 24.5px;
+  width: 46px;
+  border-radius: 5px;
+}
 table .bosscz span {
   width: 45px;
   display: inline-block;
@@ -171,4 +189,7 @@ table .bosscz .spChange {
 }
 table .bosscz .spDelete {
   margin-left: 1px;
+}
+.searchSiblingsHidden {
+  display: none;
 }

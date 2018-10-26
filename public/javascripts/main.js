@@ -58,12 +58,66 @@
 
     //点击出库
     $('.goodsOut').on('click', function() {
+        var trone = $('.gdout table tr:first');
+        $('.gdout table').html(trone);
+
         console.log("出库操作");
         $(this).addClass('li-now');
         $(this).siblings().removeClass('li-now');
         $('.cznr .gdout').addClass('cznr_block');
         $('.cznr .gdout').siblings().removeClass('cznr_block');
+
+        //获取尚未出库的货物信息
+        $.ajax({
+            type: "post",
+            url: "/signin/goodsNeedOut",
+            dataType: "json",
+            success: function(response) {
+                // console.log(response.list);
+                if (response.list.length) {
+                    console.log('ok', response.list.length);
+                    for (var i = 0; i < response.list.length; i++) {
+                        var tr = $('<tr class="tr' + i + '"><td class="hidden-xs hidden-sm">' + response.list[i].goodsNum + '</td>' + '<td class="hidden-xs hidden-sm">' + response.list[i].goodsType + '</td>' + '<td>' + response.list[i].goodsName + '</td>' + '<td>' + response.list[i].goodsMany + '</td>' + '<td class="hidden-xs hidden-sm">' + response.list[i].goodsInFrom + '</td>' + '<td>' + response.list[i].goodsInTime + '</td>' + '<td class="bosscz"> <span class="spChange">出库</span></td></tr>');
+                        $('.gdout table').append(tr);
+                    }
+
+                    //点击确定出库操作
+                    $('.spChange').on('click', function() {
+                        var sure = confirm("确定将该货物出库吗？");
+                        if (sure) {
+                            var hang = $(this).parent().parent();
+                            var oldId = hang.attr("class").split('r')[1];
+                            var newData = {};
+                            var outTime = new Date().toLocaleString();
+                            var outEmployee = goodsEmp;
+                            newData.id = response.list[oldId]._id;
+                            newData.outTime = outTime;
+                            newData.outEmployee = outEmployee;
+                            // console.log(response.list[oldId]._id);
+                            // console.log(newData);
+                            $.ajax({
+                                type: "post",
+                                url: "/signin/goodsSureOut",
+                                data: newData,
+                                dataType: "json",
+                                success: function(response) {
+                                    alert(response.msg);
+                                    hang.html("");
+                                },
+                                error: function(err) {
+                                    console.log(err);
+                                }
+                            });
+                        }
+                    });
+                } else {
+                    $('.gdout').html("库存为0，货物已经全部出库了");
+                }
+            }
+        });
     });
+
+
 
     //点击查询进出货单
     $('.goodsSearch').on('click', function() {
@@ -85,7 +139,7 @@
                 if (response.list.length) {
                     console.log('ok', response.list.length);
                     for (var i = 0; i < response.list.length; i++) {
-                        var tr = $('<tr><td class="hidden-xs hidden-sm">' + response.list[i].goodsNum + '</td>' + '<td class="hidden-xs hidden-sm">' + response.list[i].goodsType + '</td>' + '<td>' + response.list[i].goodsName + '</td>' + '<td>' + response.list[i].goodsMany + '</td>' + '<td class="hidden-xs hidden-sm">' + response.list[i].goodsInFrom + '</td>' + '<td>' + response.list[i].goodsInTime + '</td>' + '<td class="hidden-xs hidden-sm">' + response.list[i].goodsInEmployee + '</td>' + '<td>' + response.list[i].goodsOutTime + '</td>' + '<td class="hidden-xs hidden-sm">' + response.list[i].goodsOutEmployee + '</td></tr>');
+                        var tr = $('<tr class="tr' + i + '"><td class="hidden-xs hidden-sm">' + response.list[i].goodsNum + '</td>' + '<td class="hidden-xs hidden-sm">' + response.list[i].goodsType + '</td>' + '<td>' + response.list[i].goodsName + '</td>' + '<td>' + response.list[i].goodsMany + '</td>' + '<td class="hidden-xs hidden-sm">' + response.list[i].goodsInFrom + '</td>' + '<td>' + response.list[i].goodsInTime + '</td>' + '<td class="hidden-xs hidden-sm">' + response.list[i].goodsInEmployee + '</td>' + '<td>' + response.list[i].goodsOutTime + '</td>' + '<td class="hidden-xs hidden-sm">' + response.list[i].goodsOutEmployee + '</td></tr>');
                         $('.gds table').append(tr);
                     }
                 } else {
@@ -117,7 +171,7 @@
                     if (response.list.length) {
                         console.log('ok', response.list.length);
                         for (var i = 0; i < response.list.length; i++) {
-                            var tr = $('<tr class="tr' + i + '"><td class="hidden-xs hidden-sm"><input type="text" value="' + response.list[i].goodsNum + '">' + '</td>' + '<td class="hidden-xs hidden-sm"><input type="text" value="' + response.list[i].goodsType + '">' + '</td>' + '<td><input type="text" value="' + response.list[i].goodsName + '">' + '</td>' + '<td><input type="text" value="' + response.list[i].goodsMany + '">' + '</td>' + '<td class="hidden-xs hidden-sm"><input type="text" value="' + response.list[i].goodsInFrom + '">' + '</td>' + '<td class="hidden-xs hidden-sm"><input type="text" value="' + response.list[i].goodsInEmployee + '">' + '</td>' + '<td class="hidden-xs hidden-sm"><input type="text" value="' + response.list[i].goodsOutEmployee + '">' + '</td><td class="bosscz"> <span class="spChange">修改</span> <span class="spDelete">删除</span></td></tr>');
+                            var tr = $('<tr class="tr' + i + '"><td class="hidden-xs hidden-sm"><input type="text" value="' + response.list[i].goodsNum + '">' + '</td>' + '<td class="hidden-xs hidden-sm"><input type="text" value="' + response.list[i].goodsType + '">' + '</td>' + '<td><input type="text" value="' + response.list[i].goodsName + '">' + '</td>' + '<td><input type="text" value="' + response.list[i].goodsMany + '">' + '</td>' + '<td><input type="text" value="' + response.list[i].goodsInFrom + '">' + '</td>' + '<td class="hidden-xs hidden-sm"><input type="text" value="' + response.list[i].goodsInEmployee + '">' + '</td>' + '<td class="hidden-xs hidden-sm"><input type="text" value="' + response.list[i].goodsOutEmployee + '">' + '</td><td class="bosscz"> <span class="spChange">修改</span> <span class="spDelete">删除</span></td></tr>');
                             $('.gdd table').append(tr);
                         }
 
@@ -159,7 +213,7 @@
                                 var oldId = $(this).parent().parent().attr("class").split('r')[1];
                                 var newData = {}
                                 newData.id = response.list[oldId]._id;
-                                $(this).parent().parent().css("display", "none");
+                                $(this).parent().parent().html("");
                                 $.ajax({
                                     type: "post",
                                     url: "/signin/goods-delete",
@@ -253,7 +307,7 @@
                             var sure = confirm("确定删除这名员工的信息吗？");
                             // console.log(sure);
                             if (sure) {
-                                $(this).parent().parent().css("display", "none");
+                                $(this).parent().parent().html("");
                                 $.ajax({
                                     type: "post",
                                     url: "/users/rygl-delete",
@@ -322,11 +376,56 @@
     });
 
 
-    //出库操作的Ajax
+    //页面内的搜索操作
+
+    //出库和查询货单页面搜索
+    $('.outScAbs button,.seaScAbs button').on('click', function() {
+        var butsib = $(this).siblings().val();
+        var reg = new RegExp(butsib, "ig");
+        console.log(butsib);
+        if (butsib) {
+            var all = $(this).parent().parent().find('tr[class^="tr"]');
+
+            all.each(function() {
+                var pand = reg.test($(this).text());
+                if (!pand) {
+                    $(this).css("display", "none");
+                } else {
+                    $(this).css("display", "");
+                }
+            });
+
+        } else {
+            alert("请输入搜索内容！");
+        }
+    });
 
 
+    //货单管理和人员管理页面搜索
+    $('.delScAbs button,.useScAbs button').on('click', function() {
+        var butsib = $(this).siblings().val();
+        var reg = new RegExp(butsib, "ig");
+        // console.log(butsib);
+        if (butsib) {
+            var all = $(this).parent().parent().find('tr[class^="tr"]');
+            all.each(function() {
+                // console.log($(this).children());
+                var pand = 0;
+                $(this).children().each(function() {
+                    var duan = reg.test($(this).children().val());
+                    if (duan) {
+                        return pand = 1;
+                    }
+                });
+                if (pand) {
+                    $(this).css("display", "");
+                } else {
+                    $(this).css("display", "none");
+                }
+            });
 
-
-
-
+        } else {
+            alert("请输入搜索内容！");
+        }
+    });
 })(window, jQuery);

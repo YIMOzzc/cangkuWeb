@@ -25,6 +25,41 @@ router.post('/goodsIn', function(req, res, next) {
     });
 });
 
+//货物出库操作 查询尚未出库的所有货物信息
+router.post('/goodsNeedOut', function(req, res, next) {
+    MongoClient.connect(DB_CONN_STR, { useNewUrlParser: true }, function(err, client) {
+        var db = client.db('goods'); //选择数据库;
+        var goods = db.collection('goodsmsg'); //选择集合;
+        var k = goods.find({ "goodsFlag": "0" }).toArray();
+        // console.log(k);
+        k.then(function(data) {
+            // console.log(data);
+            res.send({
+                list: data,
+            });
+        });
+    });
+});
+
+
+router.post('/goodsSureOut', function(req, res, next) {
+    MongoClient.connect(DB_CONN_STR, { useNewUrlParser: true }, function(err, client) {
+        var db = client.db('goods'); //选择数据库;
+        var goods = db.collection('goodsmsg'); //选择集合;
+        var objid = mongoose.Types.ObjectId(req.body.id);
+        goods.updateOne({ "_id": objid }, { $set: { "goodsOutTime": req.body.outTime, "goodsOutEmployee": req.body.outEmployee, "goodsFlag": "1" } });
+        res.send({ "msg": "货物出库成功,请在查询进出货单页查看详情！" });
+        // var k = goods.find({ "goodsFlag": "0" }).toArray();
+        // // console.log(k);
+        // k.then(function(data) {
+        //     // console.log(data);
+        //     res.send({
+        //         list: data,
+        //     });
+        // });
+    });
+});
+
 
 //货物表单查询
 router.post('/goodsSearch', function(req, res, next) {
@@ -68,4 +103,6 @@ router.post('/goods-delete', function(req, res, next) {
         res.send({ "dmsg": "已经成功删除这条货单！" });
     });
 });
+
+
 module.exports = router;
